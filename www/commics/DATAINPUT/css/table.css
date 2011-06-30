@@ -1,0 +1,13 @@
+table.sorted{border:0;padding:0;margin:0 0 1em;border-left:1px solid #336;border-top:1px solid #336;float:left;clear:left;}
+table.sorted tr {border:0;padding:0;margin:0;}
+.sorted tr, .sorted td, th {border:0;padding:2px 6px;margin:0;border-right:1px solid #336;border-bottom:1px solid #336;background-color:#EAEEF3;}
+td[axis='number'], td[axis='date'] {text-align:right;}
+th {white-space:no-wrap;background-color:#B4C4D1;padding:2px 20px;}
+tfoot td {border-top:1px solid #003;}
+thead th {border-bottom:2px solid #003;}
+.odd td {background-color:#E8ECF1;}
+.even td {background-color:#DDE5EB;}
+.hover td {background-color:#A5B3C9;}
+.sortedminus {background-color:#ecc;}
+.sortedplus {background-color:#cec;}
+.selrow td {background-color:#879AB7;}

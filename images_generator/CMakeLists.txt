@@ -1,0 +1,21 @@
+# This is a CMake example for Python
+cmake_minimum_required(VERSION 2.4)
+
+FIND_PACKAGE(SWIG REQUIRED)
+FIND_PACKAGE(Qt4 REQUIRED)
+
+INCLUDE(${SWIG_USE_FILE})
+INCLUDE(${QT_USE_FILE})
+
+FIND_PACKAGE(PerlLibs)
+INCLUDE_DIRECTORIES(${PERL_INCLUDE_PATH})
+
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
+
+SET(CMAKE_SWIG_FLAGS "")
+
+SET_SOURCE_FILES_PROPERTIES(compclusteringengine.i PROPERTIES CPLUSPLUS ON)
+SET_SOURCE_FILES_PROPERTIES(compclusteringengine.i PROPERTIES SWIG_FLAGS "-includeall")
+SWIG_ADD_MODULE(compclusteringengine perl compclusteringengine.i compclusteringengine.cpp)
+SWIG_LINK_LIBRARIES(compclusteringengine ${PERL_LIBRARIES} ${QT_LIBRARIES})
+

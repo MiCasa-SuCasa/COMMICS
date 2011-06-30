@@ -1,0 +1,11 @@
+
+This software is intended to be compiled as a shared object (.so)
+It is used to generate several images shown in the COMMICS web application.
+In order to make it work properly you will need to install:
+* cmake 2.4 or upper
+* swig
+* qt development libraries
+* perl development libraries
+
+To compile it, just type ccmake path/to/CMakeLists.txt
+Two files will be generated: libcompclusteringengine.so and compclusteringengine.pm

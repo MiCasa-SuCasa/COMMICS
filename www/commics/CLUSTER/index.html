@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+<link rel="stylesheet" href="../DATAINPUT/css/common.css" type="text/css" /> 
+<link rel="stylesheet" href="../DATAINPUT//css/header.css" type="text/css" /> 
+
+<script type="text/javascript" src="../javascripts/prototype.js"> </script> 
+<script src="../javascripts/scriptaculous.js" type="text/javascript"></script>
+
+
+
+
+<!--crop image -->
+<script src="../javascripts/cropper/cropper.js" type="text/javascript"></script>
+
+<!-- Ventanitas--> 
+<script type="text/javascript" src="../javascripts/effects.js"> </script> 
+<script type="text/javascript" src="../javascripts/window.js"> </script> 
+<script type="text/javascript" src="../javascripts/window_effects.js"> </script>
+<script type="text/javascript" src="../javascripts/window_ext.js"> </script> 
+<script type="text/javascript" src="../javascripts/debug.js"> </script>
+
+<script type="text/javascript" src="../javascripts/comp_basic.js"> </script>
+
+<link href="../themes/alert.css" rel="stylesheet" type="text/css"/> 
+<link href="../themes/default.css" rel="stylesheet" type="text/css"> 
+<!-- Add this to have a specific theme--> 
+<link href="../themes/alphacube.css" rel="stylesheet" type="text/css"> 
+
+
+
+<style type="text/css"> 
+   .popup_effect1 {
+     background:#11455A;
+     opacity: 0.2;
+   }
+   .popup_effect2 {
+     background:#FF0041;
+     border: 3px dashed #000;
+   }
+
+   .green {
+     background-color: #C3D9C8;
+     font-family: Verdana, Arial, Helvetica, sans-serif;
+     font-size: 12px;
+   }
+
+   .grey {
+    background-color: #E6E6FF;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+   }
+   
+
+  
+</style>
+
+<!-- script language="Javascript"-->
+<!--/script-->
+</head>
+
+<body onload="initWindows()">
+
+
+<div id="viewport">
+
+<div id="hd"> 
+<a href="/" style=""><img src="../img/logo.png" border="0" height="50" width="120" /></a> 
+<h1 id="logo"><a href="/"></a></h1> 
+<div id="dataStatus">No data set..</div>
+
+<table cellspacing="0" class="nav main-nav"> 
+<tr> 
+<td><a id="home-link" href="/commics"><span>Home</span></a></td><td><a id="data-link" href="/commics/DATAINPUT/"><span>Data selection</span></a></td><td class="active"><a id="cluster-link" href="/commics/CLUSTER/"><span>Clustering</span></a></td><td><a id="profile-link" href="/commics/PROFILE/"><span>Functional profile</span></a></td><td><a id="cda-link" href="/commics/CDA/"><span>CDA</span></a></td></tr> 
+</table> 
+</div> 
+
+<div class="content">
+
+<div id="cluster_config">
+  <div id="controls">
+  <fieldset>
+    <legend>Actions...</legend>
+        <a href="#" onclick="openDialog(this)">Configure...</a>
+  </fieldset>
+  </div>
+<div class="framed_div">
+  <div id="run_cluster">
+  	<input value="Run clustering" type="button" onclick='JavaScript:xmlhttpPost("/cgi-bin/commics/CLUSTER/cluster.cgi")'>
+  </div>
+  <div id="cluster_explanation">Run clustering process using the selected parameters and the current data</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div style="background-color: #FFF; margin:4px;">
+<table>
+<tr>
+<td>
+        <div id='divScroll' style="border:0; width:440px; height:600px; overflow:auto; overflow-y:auto; padding:15px;">
+        	<center><div id="result"></div></center>
+</td>
+<td>
+        <div id='divZoomScroll' style="border:0; width:509px; height:600px; overflow:auto; overflow-y:auto; padding:15px">
+        	<center><div id="zoom"></div></center>
+        </div>
+</td>
+</tr>
+</table>
+</div>
+
+</div>
+
+</div> 
+
+
+<div id="config_form_div" style="visibility: hidden">
+<form name="form_clust_conf">
+<div class="grey">
+<p>Distance measure for COG clustering:<br />
+<input type="radio" name="subject" checked="yes" value="no_cog"> No clustering<br />
+<input type="radio" name="subject" value="uncentered_cog"> Uncentered correlation<br />
+<input type="radio" name="subject" value="pearson_cog"> Pearson correlation<br />
+<input type="radio" name="subject" value="uncenter_abs_cog"> Uncentered correlation, absolute value<br />
+<input type="radio" name="subject" value="pearson_abs_cog"> Pearson correlation, absolute value<br />
+<input type="radio" name="subject" value="spearman_cog"> Spearman's rank correlation<br />
+<input type="radio" name="subject" value="kendall_cog"> Kendall's tau<br />
+<input type="radio" name="subject" value="euclidean_cog"> Euclidean distance<br />
+<input type="radio" name="subject" value="city_cog"> City-block distance<br />
+</p>
+</div>
+
+<div class="green">
+<p>Distance measure for metagenome clustering:<br />
+<input type="radio" name="subject2" checked="yes" value="no_meta"> No clustering<br />
+<input type="radio" name="subject2" value="uncentered_meta"> Uncentered correlation<br />
+<input type="radio" name="subject2" value="pearson_meta"> Pearson correlation<br />
+<input type="radio" name="subject2" value="uncenter_abs_meta"> Uncentered correlation, absolute value<br />
+<input type="radio" name="subject2" value="pearson_abs_meta"> Pearson correlation, absolute value<br />
+<input type="radio" name="subject2" value="spearman_meta"> Spearman's rank correlation<br />
+<input type="radio" name="subject2" value="kendall_meta"> Kendall's tau<br />
+<input type="radio" name="subject2" value="euclidean_meta"> Euclidean distance<br />
+<input type="radio" name="subject2" value="city_meta"> City-block distance<br />
+</p>
+</div>
+
+<div class="grey">
+<p>Hierarchical clustering method:<br />
+<input type="radio" name="subject3" checked="yes" value="complete">  Pairwise complete-linkage<br />
+<input type="radio" name="subject3" value="single"> Pairwise single-linkage<br />
+<input type="radio" name="subject3" value="centroid"> Pairwise centroid-linkage<br />
+<input type="radio" name="subject3" value="average"> Pairwise average-linkage<br />
+</p>
+</div>
+
+<div class="green">
+<p>
+<input type="checkbox" name="subject4" value="k_means"> Run k-means clustering instead of hierarchical clustering<br />
+Number of clusters k to use: <input type="text" size="1" name="subject5"><br />
+Number of times the k-means clustering algorithm is run: <input type="text" size="1" name="subject6" value="1"><br />
+</p>
+</div>
+
+<center><button type="button" onclick="javascript:ValidateForm(document.forms['form_clust_conf'])">Save values</button></center>
+
+</form>
+</div>
+
+</body>
+</html>
